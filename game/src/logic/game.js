@@ -28,6 +28,38 @@ export default class Game {
     });
   }
 
+  get canvas() {
+    return this._canvas;
+  }
+  get width() {
+    return this._width;
+  }
+  get height() {
+    return this._height;
+  }
+  get player() {
+    return this._player;
+  }
+  get mouse() {
+    return this._mouse;
+  }
+
+  set canvas(canvas) {
+    this._canvas = canvas;
+  }
+  set width(width) {
+    this._width = width;
+  }
+  set height(height) {
+    this._height = height;
+  }
+  set player(player) {
+    this._player = player;
+  }
+  set mouse(mouse) {
+    this._mouse = mouse;
+  }
+
   render(context) {
     console.log(context);
     this.player.draw(context);

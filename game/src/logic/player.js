@@ -4,6 +4,38 @@ export default class Player {
     this.collisionX = this.game.width * 0.5;
     this.collisionY = this.game.height * 0.5;
     this.collisionRadius = 59;
+    console.log(this);
+  }
+
+  get game() {
+    return this._game;
+  }
+  set game(game) {
+    this._game = game;
+  }
+
+  get collisionX() {
+    return this._collisionX;
+  }
+
+  set collisionY(collisionY) {
+    this._collisionY = collisionY;
+  }
+
+  get collisionY() {
+    return this._collisionY;
+  }
+
+  set collisionX(collisionX) {
+    this._collisionX = collisionX;
+  }
+
+  get collisionRadius() {
+    return this._collisionRadius;
+  }
+
+  set collisionRadius(collisionRadius) {
+    this._collisionRadius = collisionRadius;
   }
 
   draw(context) {
