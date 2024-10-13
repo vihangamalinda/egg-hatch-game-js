@@ -10,21 +10,23 @@ export default class Game {
     this.mouse = new MouseControl(this.width * 0.5, this.height * 0.5, false);
 
     this.canvas.addEventListener("mousedown", (e) => {
-      console.log("mousedown start", this.mouse);
+    //   console.log("mousedown start", this.mouse);
       this.mouse.update(e.offsetX, e.offsetY, true);
-      console.log("mousedown end", this.mouse);
+    //   console.log("mousedown end", this.mouse);
     });
 
     this.canvas.addEventListener("mouseup", (e) => {
-      console.log("mouseup start", this.mouse);
+    //   console.log("mouseup start", this.mouse);
       this.mouse.update(e.offsetX, e.offsetY, false);
-      console.log("mouseup end", this.mouse);
+    //   console.log("mouseup end", this.mouse);
     });
 
     this.canvas.addEventListener("mousemove", (e) => {
-      console.log("mouseup start", this.mouse);
-      this.mouse.update(e.offsetX, e.offsetY, false);
-      console.log("mouseup end", this.mouse);
+        if(this.mouse.pressed){
+    //   console.log("mouseup start", this.mouse);
+      this.mouse.update(e.offsetX, e.offsetY, true);
+    //   console.log("mouseup end", this.mouse);
+        }
     });
   }
 
@@ -61,7 +63,8 @@ export default class Game {
   }
 
   render(context) {
-    console.log(context);
+    // console.log(context);
     this.player.draw(context);
+    this.player.update()
   }
 }

@@ -4,7 +4,10 @@ export default class Player {
     this.collisionX = this.game.width * 0.5;
     this.collisionY = this.game.height * 0.5;
     this.collisionRadius = 59;
-    console.log(this);
+    this.speedX = 0;
+    this.speedY = 0;
+    this.speedModifier = 5;
+    // console.log(this);
   }
 
   get game() {
@@ -38,6 +41,33 @@ export default class Player {
     this._collisionRadius = collisionRadius;
   }
 
+  get speedX() {
+    return this._speedX;
+  }
+
+  set speedX(speedX) {
+    // console.log(speedX);
+    this._speedX = speedX;
+    // console.log(speedX);
+  }
+
+  get speedY() {
+    return this._speedY;
+  }
+
+  set speedY(speedY) {
+    this._speedY = speedY;
+    console.log(speedY);
+  }
+
+  set speedModifier(speedModifier) {
+    this._speedModifier = speedModifier;
+  }
+
+  get speedModifier() {
+    return this._speedModifier;
+  }
+
   draw(context) {
     context.beginPath();
     context.arc(
@@ -52,5 +82,29 @@ export default class Player {
     context.fill();
     context.restore();
     context.stroke();
+    context.beginPath();
+    //  MoveTo() method will define starting x and y coordinates of the line
+    context.moveTo(this.collisionX, this.collisionY);
+    // LineTo() method will set the ending x and y coordinates of the line
+    context.lineTo(this.game.mouse.x, this.game.mouse.y);
+    context.stroke();
+  }
+
+  update() {
+    this.dx = this.game.mouse.x - this.collisionX; // distance from mouse click point to player position x
+    this.dy = this.game.mouse.y - this.collisionY; // distance from mouse click point to player position y
+    const hypotenuseDisctance = Math.hypot(this.dy, this.dx);
+    if (hypotenuseDisctance > this.speedModifier) {
+      this.speedX = (this.dx / hypotenuseDisctance) * this.speedModifier || 0;
+      this.speedY = (this.dy / hypotenuseDisctance) * this.speedModifier || 0;
+    } else {
+      this.speedX = 0;
+      this.speedY = 0;
+    }
+    console.log(this.speedX);
+    console.log(this.speedY);
+    this.collisionX += this.speedX;
+    this.collisionY += this.speedY;
+    // console.log(this)
   }
 }
