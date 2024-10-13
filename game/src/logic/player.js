@@ -1,3 +1,5 @@
+import drawHelper from "./utility/drawUtility.js";
+
 export default class Player {
   constructor(game) {
     this.game = game;
@@ -57,7 +59,7 @@ export default class Player {
 
   set speedY(speedY) {
     this._speedY = speedY;
-    console.log(speedY);
+    // console.log(speedY);
   }
 
   set speedModifier(speedModifier) {
@@ -69,19 +71,20 @@ export default class Player {
   }
 
   draw(context) {
-    context.beginPath();
-    context.arc(
-      this.collisionX,
-      this.collisionY,
-      this.collisionRadius,
-      0,
-      Math.PI * 2
-    );
-    context.save();
-    context.globalAlpha = 0.5;
-    context.fill();
-    context.restore();
-    context.stroke();
+    drawHelper(context, this);
+    // context.beginPath();
+    // context.arc(
+    //   this.collisionX,
+    //   this.collisionY,
+    //   this.collisionRadius,
+    //   0,
+    //   Math.PI * 2
+    // );
+    // context.save();
+    // context.globalAlpha = 0.5;
+    // context.fill();
+    // context.restore();
+    // context.stroke();
     context.beginPath();
     //  MoveTo() method will define starting x and y coordinates of the line
     context.moveTo(this.collisionX, this.collisionY);
@@ -101,8 +104,8 @@ export default class Player {
       this.speedX = 0;
       this.speedY = 0;
     }
-    console.log(this.speedX);
-    console.log(this.speedY);
+    // console.log(this.speedX);
+    // console.log(this.speedY);
     this.collisionX += this.speedX;
     this.collisionY += this.speedY;
     // console.log(this)
